@@ -1,0 +1,29 @@
+{
+  "name": "frame",
+  "version": "0.1.0",
+  "description": "Publish HTML apps and Markdown documents to Frame, update existing pages, and keep recurring reports together as dated editions.",
+  "author": {
+    "name": "Frame",
+    "url": "https://app.frame.page"
+  },
+  "homepage": "https://app.frame.page",
+  "repository": "https://github.com/scratchpad-ai/frame-plugin",
+  "license": "MIT",
+  "keywords": [
+    "frame",
+    "publishing",
+    "documents",
+    "html",
+    "markdown",
+    "reports",
+    "dashboards",
+    "mcp"
+  ],
+  "displayName": "Frame",
+  "logo": "assets/logo.svg",
+  "minClientVersions": {
+    "cursor": "3.13.0"
+  },
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

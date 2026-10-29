@@ -1,0 +1,24 @@
+name: Validate plugin
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - run: node scripts/sync-manifests.mjs --check
+      - name: Download official schemas
+        run: |
+          curl -fsSL --retry 3 https://agent-plugins.org/schemas/1.0.0/plugin.schema.json -o "$RUNNER_TEMP/plugin.schema.json"
+          curl -fsSL --retry 3 https://agent-plugins.org/schemas/1.0.0/mcp.schema.json -o "$RUNNER_TEMP/mcp.schema.json"
+      - name: Validate portable manifests
+        run: |
+          npx --yes ajv-cli@5 validate --spec=draft2020 -s "$RUNNER_TEMP/plugin.schema.json" -d plugin.json
+          npx --yes ajv-cli@5 validate --spec=draft2020 -s "$RUNNER_TEMP/mcp.schema.json" -d mcp.json
+      - run: npx --yes skills-ref@0.1.5 validate skills/use-frame

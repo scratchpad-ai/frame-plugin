@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "frame": {
+      "type": "http",
+      "url": "https://app.frame.page/api/mcp"
+    }
+  }
+}
